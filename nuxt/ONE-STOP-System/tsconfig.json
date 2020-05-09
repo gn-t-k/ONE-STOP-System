@@ -17,17 +17,22 @@
     "baseUrl": ".",
     "paths": {
       "~/*": [
-        "./*"
+        "src/*"
       ],
       "@/*": [
-        "./*"
+        "src/*"
       ]
     },
     "types": [
       "@types/node",
-      "@nuxt/types"
-    ]
+      "@nuxt/types",
+      "vuetify"
+    ],
+    "experimentalDecorators": true
   },
+  "files": [
+    "shims-vue.d.ts"
+  ],
   "exclude": [
     "node_modules",
     ".nuxt",
