@@ -1,6 +1,6 @@
 FROM node:14
 
-WORKDIR /app
+WORKDIR /var/www/html/nuxt
 
 RUN apk update && \
     apk add git && \
