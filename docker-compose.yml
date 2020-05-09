@@ -32,10 +32,10 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
-  nuxt:
-    build: ./docker/nuxt
+  node:
+    build: ./docker/node
     container_name: "nuxt"
-    command: npm run dev
+    tty: true
     volumes: 
       - ./nuxt:/var/www/html/nuxt
     ports:
