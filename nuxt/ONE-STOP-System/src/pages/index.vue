@@ -70,8 +70,8 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
 @Component({
   components: {
     Logo,
-    VuetifyLogo
-  }
+    VuetifyLogo,
+  },
 })
 export default class Index extends Vue {}
 </script>
