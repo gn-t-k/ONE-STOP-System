@@ -51,7 +51,16 @@
       </v-row>
       <v-row>
         <v-col cols="2">
-          <v-subheader>見守りサービス</v-subheader>
+          <v-subheader>タンクの容量</v-subheader>
+        </v-col>
+        <v-col cols="6">
+          <v-autocomplete :items="capacity" label="タンクの容量を選択">
+          </v-autocomplete>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="2">
+          <v-subheader>定期配送</v-subheader>
         </v-col>
         <v-col>
           <v-switch v-model="toggle"></v-switch>
@@ -109,6 +118,10 @@ export default {
         value: 3,
         text: '地区3',
       },
+    ],
+    capacity: [
+      { value: 1, text: '200L' },
+      { value: 2, text: '400L' },
     ],
     toggle: true,
   }),

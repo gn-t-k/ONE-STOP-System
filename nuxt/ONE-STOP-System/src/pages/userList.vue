@@ -99,7 +99,16 @@
             </v-row>
             <v-row>
               <v-col cols="5">
-                <v-subheader>見守りサービス</v-subheader>
+                <v-subheader>タンクの容量</v-subheader>
+              </v-col>
+              <v-col cols="7">
+                <v-autocomplete :items="capacity" label="タンクの容量を選択">
+                </v-autocomplete>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="5">
+                <v-subheader>定期配送</v-subheader>
               </v-col>
               <v-col cols="7">
                 <v-switch v-model="toggle"></v-switch>
@@ -179,6 +188,16 @@ export default {
         text: '地区3',
       },
     ],
+    capacity: [
+      {
+        value: 1,
+        text: '200L',
+      },
+      {
+        value: 2,
+        text: '400L',
+      },
+    ],
     headers: [
       { text: '編集', value: 'edit' },
       { text: '雪んこNo.', value: 'yukinkoNumber' },
@@ -186,7 +205,8 @@ export default {
       { text: '電話番号', value: 'phoneNumber' },
       { text: '地区', value: 'regions' },
       { text: 'センサID', value: 'sensorId' },
-      { text: '見守り', value: 'isMonitored' },
+      { text: 'タンクの容量', value: 'capacity' },
+      { text: '定期配送', value: 'isSubscriptionMember' },
       { text: '削除', value: 'delete' },
     ],
     userList: [
@@ -196,7 +216,8 @@ export default {
         phoneNumber: '111-1111-1111',
         regions: '秋田',
         sensorId: 11111,
-        isMonitored: '有',
+        capacity: 200,
+        isSubscriptionMember: '有',
       },
       {
         yukinkoNumber: 22222,
@@ -204,7 +225,8 @@ export default {
         phoneNumber: '222-2222-2222',
         regions: '大舘',
         sensorId: 22222,
-        isMonitored: '無',
+        capacity: 200,
+        isSubscriptionMember: '無',
       },
       {
         yukinkoNumber: 33333,
@@ -212,7 +234,8 @@ export default {
         phoneNumber: '333-3333-3333',
         regions: '能代',
         sensorId: 33333,
-        isMonitored: '有',
+        capacity: 200,
+        isSubscriptionMember: '有',
       },
     ],
     editDialog: false,
