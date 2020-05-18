@@ -31,7 +31,7 @@
               <v-card-actions class="px-4">
                 <v-checkbox label="ログイン状態を保存する"></v-checkbox>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" href="index.html" link>ログイン</v-btn>
+                <v-btn color="primary" href="./home" link>ログイン</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>

@@ -48,21 +48,21 @@ export default {
     navigationItems: {
       home: {
         text: 'ホーム',
-        href: './index.html',
+        href: './home',
       },
       userList: {
         text: '利用者一覧',
-        href: './userList.html',
+        href: './userList',
       },
       userRegisteration: {
         text: '利用者登録',
-        href: './userRegisteration.html',
+        href: './userRegisteration',
       },
     },
     menuItems: {
       logout: {
         title: 'ログアウト',
-        href: './login.html',
+        href: './login',
       },
     },
   }),

@@ -78,26 +78,6 @@
 <script>
 export default {
   data: () => ({
-    navigationItems: {
-      home: {
-        text: 'ホーム',
-        href: './index.html',
-      },
-      userList: {
-        text: '利用者一覧',
-        href: './userList.html',
-      },
-      userRegisteration: {
-        text: '利用者登録',
-        href: './userRegisteration.html',
-      },
-    },
-    menuItems: {
-      logout: {
-        title: 'ログアウト',
-        href: './login.html',
-      },
-    },
     breadCrumbs: [
       {
         text: '利用者登録',
