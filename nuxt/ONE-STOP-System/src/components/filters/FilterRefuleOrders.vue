@@ -8,7 +8,7 @@
       label="地区"
       hide-details
       class="mr-8 mt-0 pt-0"
-      @imput="setRegion"
+      @input="setRegion"
     >
     </v-autocomplete>
   </v-col>
