@@ -10,15 +10,15 @@
     </v-container>
     <v-container class="mb-8">
       <v-row>
-        <v-col class="d-flex justify-space-between align-center" cols="10">
-          <div class="d-flex justify-start align-center">
-            <h3 class="mr-8">アラート：最終更新2020年7月1日（16:00）</h3>
-            <v-btn color="primary">印刷</v-btn>
-          </div>
+        <v-col class="d-flex align-center justify-start">
+          <h3 class="mr-8">アラート：最終更新2020年7月1日（16:00）</h3>
+        </v-col>
+        <v-col class="d-flex align-center justify-end">
+          <v-btn color="primary">印刷</v-btn>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="10">
+        <v-col cols="12">
           <v-data-table
             :headers="headers.alerts"
             :items="body.alerts"
@@ -31,26 +31,24 @@
     </v-container>
     <v-container class="mb-8">
       <v-row>
-        <v-col class="d-flex justify-space-between align-center" cols="10">
-          <div class="d-flex justify-start align-center">
-            <h3 class="mr-8">給油指示情報：最終更新2020年7月1日（16:00）</h3>
-            <v-btn color="primary">印刷</v-btn>
-          </div>
-          <div class="d-flex justify-end align-center">
-            <v-subheader>定期配送</v-subheader>
-            <v-switch v-model="toggle" class="mr-4"></v-switch>
-            <v-autocomplete
-              :items="regions"
-              label="地区"
-              hide-details
-              class="align-center"
-            >
-            </v-autocomplete>
-          </div>
+        <v-col class="d-flex align-center justify-start">
+          <h3 class="mr-8">給油指示情報：最終更新2020年7月1日（16:00）</h3>
+        </v-col>
+        <v-col class="d-flex align-center justify-end" cols="5">
+          <v-subheader>定期配送</v-subheader>
+          <v-switch v-model="toggle" class="mr-8"></v-switch>
+          <v-autocomplete
+            :items="regions"
+            label="地区"
+            hide-details
+            class="mr-8 mt-0 pt-0"
+          >
+          </v-autocomplete>
+          <v-btn color="primary">印刷</v-btn>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="10">
+        <v-col cols="12">
           <v-data-table
             :headers="headers.refuleOrders"
             :items="body.refuleOrders"
