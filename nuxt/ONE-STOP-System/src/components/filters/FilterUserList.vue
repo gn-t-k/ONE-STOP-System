@@ -31,43 +31,41 @@
   </v-col>
 </template>
 
-<script>
-export default {
-  props: {
-    regions: {
-      type: Array,
-      default: () => {},
-      required: true,
-    },
-  },
+<script type="ts">
+import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 
-  data: () => ({
-    yukinkoNumber: null,
-    name: '',
-    regionsValue: null,
-  }),
+@Component
+export default class FilterUserList extends Vue {
+  yukinkoNumber: number = null
+  name: string = ""
+  regionsValue: number = null
 
-  methods: {
-    setYukinkoNumber(yukinkoNumber) {
-      this.$emit('setYukinkoNumber', yukinkoNumber)
-    },
+  @Prop({ default: [] })
+  regions!: array
 
-    setName(name) {
-      this.$emit('setName', name)
-    },
+  @Emit("setYukinkoNumber")
+  setYukinkoNumber(yukinkoNumber: number): number {
+    return yukinkoNumber
+  }
 
-    setRegionsValue(regionsValue) {
-      this.$emit('setRegionsValue', regionsValue)
-    },
+  @Emit("setName")
+  setName(name: string): string {
+    return name
+  }
 
-    setFilteredUserList() {
-      const filteredUserList = {
-        yukinkoNumber: this.yukinkoNumber,
-        name: this.name,
-        region: this.regionsValue,
-      },
-      this.$emit("setFilteredUserList", filteredUserList)
-    },
-  },
+  @Emit("setRegionsValue")
+  setRegionsValue(regionsValue: number): number {
+    return regionsValue
+  }
+
+  @Emit("setFilterUserList")
+  setFilterUserList(): object {
+    const filterUserList = {
+      yukinkoNumber: this.yukinkoNumber,
+      name: this.name,
+      region: this.regionsValue,
+    }
+    return filterUserList
+  }
 }
 </script>

@@ -15,17 +15,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    capacityValue: null,
-  }),
+<script lang="ts">
+import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
-  methods: {
-    setCapacityValue(capacityValue) {
-      this.capacityValue = capacityValue
-      this.$emit('setCapacityValue', capacityValue)
-    },
-  },
+@Component
+export default class InputCapacity extends Vue {
+  capacityValue: number = null
+
+  @Emit('setCapacityValue')
+  setCapacityValue(capacityValue: number): number {
+    this.capacityValue = capacityValue
+    return capacityValue
+  }
 }
 </script>

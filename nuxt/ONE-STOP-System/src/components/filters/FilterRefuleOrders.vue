@@ -14,30 +14,22 @@
   </v-col>
 </template>
 
-<script>
-export default {
-  props: {
-    regions: {
-      type: Array,
-      default: () => [],
-      required: true,
-    },
+<script lang="ts">
+import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 
-    regionsValue: {
-      type: Object,
-      default: () => {},
-      required: true,
-    },
-  },
+@Component
+export default class FilterRefuleOrders extends Vue {
+  isSubscriptionMember: boolean = false
 
-  data: () => ({
-    isSubscriptionMember: false,
-  }),
+  @Prop({ default: [] })
+  regions!: array
 
-  methods: {
-    setRegion(region) {
-      this.$emit('setRegion', region)
-    },
-  },
+  @Prop({ default: {} })
+  regionsValue!: object
+
+  @Emit('setRegion')
+  setRegion(region: object): object {
+    return region
+  }
 }
 </script>
