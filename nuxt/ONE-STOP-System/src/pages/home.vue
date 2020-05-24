@@ -44,6 +44,8 @@
             class="mr-8 mt-0 pt-0"
           >
           </v-autocomplete>
+        </v-col>
+        <v-col class="d-flex align-center justify-end" cols="1">
           <v-btn color="primary">印刷</v-btn>
         </v-col>
       </v-row>
