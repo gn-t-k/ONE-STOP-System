@@ -1,17 +1,19 @@
 <template>
   <v-app>
-    <v-container>
+    <v-container class="mb-8">
       <v-row>
-        <v-breadcrumbs :items="breadCrumbs" class="pl-0"></v-breadcrumbs>
+        <v-breadcrumbs :items="breadCrumbs" class="pl-3"></v-breadcrumbs>
       </v-row>
-      <v-row class="mb-8">
-        <h2>ホーム</h2>
+      <v-row>
+        <v-col>
+          <h2>ホーム</h2>
+        </v-col>
       </v-row>
     </v-container>
     <v-container class="mb-8">
       <v-row>
         <v-col class="d-flex align-center justify-start">
-          <h3 class="mr-8">アラート：最終更新2020年7月1日（16:00）</h3>
+          <h3>アラート：最終更新2020年7月1日（16:00）</h3>
         </v-col>
         <v-col class="d-flex align-center justify-end">
           <v-btn color="primary">印刷</v-btn>
