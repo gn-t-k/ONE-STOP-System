@@ -13,17 +13,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    phoneNumber: null,
-  }),
+<script lang="ts">
+import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
-  methods: {
-    setPhoneNumber(phoneNumber) {
-      this.phoneNumber = phoneNumber
-      this.$emit('setPhoneNumber', phoneNumber)
-    },
-  },
+@Component
+export default class InputNumber extends Vue {
+  phoneNumber: number = null
+
+  @Emit('setPhoneNumber')
+  setPhoneNumber(phoneNumber: number): number {
+    this.phoneNumber = phoneNumber
+    return phoneNumber
+  }
 }
 </script>

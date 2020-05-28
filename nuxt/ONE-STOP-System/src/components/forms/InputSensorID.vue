@@ -13,17 +13,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    sensorID: null,
-  }),
+<script lang="ts">
+import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
-  methods: {
-    setSensorID(sensorID) {
-      this.sensorID = sensorID
-      this.$emit('setSensorID', sensorID)
-    },
-  },
+@Component
+export default class InputSensorID extends Vue {
+  sensorID: number = null
+
+  @Emit('setSensorID')
+  setSensorID(sensorID: number): number {
+    this.sensorID = sensorID
+    return sensorID
+  }
 }
 </script>

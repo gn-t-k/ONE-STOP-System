@@ -4,14 +4,12 @@
   </v-col>
 </template>
 
-<script>
-export default {
-  props: {
-    headingText: {
-      type: String,
-      default: '',
-      required: true,
-    },
-  },
+<script lang="ts">
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class HeadingLevel3 extends Vue {
+  @Prop({ default: '' })
+  headingText!: string
 }
 </script>

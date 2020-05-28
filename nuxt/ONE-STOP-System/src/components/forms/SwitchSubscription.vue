@@ -12,17 +12,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    isSubscriptionMember: false,
-  }),
+<script lang="ts">
+import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
-  methods: {
-    switchSubscription(isSubscriptionMember) {
-      this.isSubscriptionMember = isSubscriptionMember
-      this.$emit('switchSubscription', isSubscriptionMember)
-    },
-  },
+@Component
+export default class SwitchSubscription extends Vue {
+  isSubscriptionMember: boolean = false
+
+  @Emit('switchSubscription')
+  switchSubscription(isSubscriptionMember: boolean): boolean {
+    this.isSubscriptionMember = isSubscriptionMember
+    return isSubscriptionMember
+  }
 }
 </script>

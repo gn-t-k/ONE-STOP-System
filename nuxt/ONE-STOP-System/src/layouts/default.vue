@@ -42,35 +42,35 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    navigationItems: {
-      home: {
-        text: 'ホーム',
-        href: './home',
-      },
-      userList: {
-        text: '利用者一覧',
-        href: './userList',
-      },
-      userRegisteration: {
-        text: '利用者登録',
-        href: './userRegisteration',
-      },
-    },
-    menuItems: {
-      logout: {
-        title: 'ログアウト',
-        href: './login',
-      },
-    },
-  }),
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
 
-  methods: {
-    link(path) {
-      window.location.href = path
+@Component
+export default class LayoutDefault extends Vue {
+  navigationItems = {
+    home: {
+      text: 'ホーム',
+      href: './home',
     },
-  },
+    userList: {
+      text: '利用者一覧',
+      href: './userList',
+    },
+    userRegisteration: {
+      text: '利用者登録',
+      href: './userRegisteration',
+    },
+  }
+
+  menuItems = {
+    logout: {
+      title: 'ログアウト',
+      href: './login',
+    },
+  }
+
+  link(path) {
+    window.location.href = path
+  }
 }
 </script>

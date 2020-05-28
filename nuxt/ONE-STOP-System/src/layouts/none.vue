@@ -4,6 +4,9 @@
   </v-app>
 </template>
 
-<script>
-export default {}
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class LayoutNone extends Vue {}
 </script>

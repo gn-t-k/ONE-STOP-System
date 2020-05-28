@@ -13,17 +13,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    name: '',
-  }),
+<script lang="ts">
+import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
-  methods: {
-    setName(name) {
-      this.name = name
-      this.$emit('setName', name)
-    },
-  },
+@Component
+export default class InputName extends Vue {
+  name: string = ''
+
+  @Emit('setName')
+  setName(name: string): string {
+    this.name = name
+    return name
+  }
 }
 </script>

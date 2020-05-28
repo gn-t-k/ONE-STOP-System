@@ -10,25 +10,21 @@
   </v-col>
 </template>
 
-<script>
-export default {
-  props: {
-    body: {
-      type: Array,
-      default: () => [],
-      required: true,
-    },
-  },
+<script lang="ts">
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-  data: () => ({
-    headers: [
-      { text: '日付', value: 'date' },
-      { text: '雪んこNo.', value: 'yukinkoNumber' },
-      { text: '氏名', value: 'name' },
-      { text: '地区', value: 'region' },
-      { text: 'タンクの容量', value: 'capacity' },
-      { text: '定期配送', value: 'isSubscriptionMember' },
-    ],
-  }),
+@Component
+export default class ListRefuleOrders extends Vue {
+  headers: array = [
+    { text: '日付', value: 'date' },
+    { text: '雪んこNo.', value: 'yukinkoNumber' },
+    { text: '氏名', value: 'name' },
+    { text: '地区', value: 'region' },
+    { text: 'タンクの容量', value: 'capacity' },
+    { text: '定期配送', value: 'isSubscriptionMember' },
+  ]
+
+  @Prop({ default: [] })
+  body!: array
 }
 </script>

@@ -14,25 +14,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    regions: {
-      type: Array,
-      default: () => [],
-      required: true,
-    },
-  },
+<script lang="ts">
+import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 
-  data: () => ({
-    regionsValue: null,
-  }),
+@Component
+export default class InputRegion extends Vue {
+  regionsValue: number = null
 
-  methods: {
-    setRegionsValue(regionsValue) {
-      this.regionsValue = regionsValue
-      this.$emit('setRegionsValue', regionsValue)
-    },
-  },
+  @Prop({ default: [] })
+  regions!: array
+
+  @Emit('setRegionsValue')
+  setRegionsValue(regionsValue: number): number {
+    this.regionsValue = regionsValue
+    return regionsValue
+  }
 }
 </script>
