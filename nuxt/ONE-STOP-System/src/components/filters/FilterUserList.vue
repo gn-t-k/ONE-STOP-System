@@ -31,35 +31,34 @@
   </v-col>
 </template>
 
-<script type="ts">
+<script lang="ts">
 import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class FilterUserList extends Vue {
   yukinkoNumber: number = null
-  name: string = ""
+
+  name: string = ''
+
   regionsValue: number = null
 
   @Prop({ default: [] })
   regions!: array
 
-  @Emit("setYukinkoNumber")
   setYukinkoNumber(yukinkoNumber: number): number {
-    return yukinkoNumber
+    this.yukinkoNumber = yukinkoNumber
   }
 
-  @Emit("setName")
   setName(name: string): string {
-    return name
+    this.name = name
   }
 
-  @Emit("setRegionsValue")
   setRegionsValue(regionsValue: number): number {
-    return regionsValue
+    this.regionsValue = regionsValue
   }
 
-  @Emit("setFilterUserList")
-  setFilterUserList(): object {
+  @Emit('set-filtered-user-list')
+  setFilteredUserList(): object {
     const filterUserList = {
       yukinkoNumber: this.yukinkoNumber,
       name: this.name,

@@ -41,13 +41,13 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  layout: 'none',
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
 
-  data: () => ({
-    drawer: null,
-    show: false,
-  }),
+@Component({
+  layout: 'none',
+})
+export default class Login extends Vue {
+  show: boolean = false
 }
 </script>
