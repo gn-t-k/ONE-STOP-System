@@ -6,8 +6,8 @@
       hide-default-footer
       class="elevation-1"
     >
-      <template v-slot:item.edit>
-        <v-icon @click="openEditModal">
+      <template v-slot:item.edit="{ item }">
+        <v-icon @click="openEditModal(item.id)">
           mdi-pencil
         </v-icon>
       </template>
@@ -41,7 +41,9 @@ export default class ListUsers extends Vue {
   body!: array
 
   @Emit('open-edit-modal')
-  openEditModal() {}
+  openEditModal(id: number): number {
+    return id
+  }
 
   @Emit('open-delete-modal')
   openDeleteModal() {}

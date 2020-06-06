@@ -5,130 +5,25 @@
         <v-breadcrumbs :items="breadCrumbs" class="pl-0"></v-breadcrumbs>
       </v-row>
       <heading-level-2 heading-text="利用者一覧"></heading-level-2>
-      <!--<v-row class="mb-8">-->
-      <!--<h2>利用者一覧</h2>-->
-      <!--</v-row>-->
     </v-container>
     <v-container>
       <filter-user-list
         :regions="regions"
         @set-filtered-user-list="setFilteredUserList"
       ></filter-user-list>
-      <!--<v-col cols="12">-->
-      <!--<v-row>-->
-      <!--<v-col cols="3">-->
-      <!--<v-text-field label="雪んこNo.を入力"> </v-text-field>-->
-      <!--</v-col>-->
-      <!--<v-col cols="3">-->
-      <!--<v-text-field label="氏名を入力"> </v-text-field>-->
-      <!--</v-col>-->
-      <!--<v-col cols="3">-->
-      <!--<v-autocomplete :items="regions" label="地区を選択">-->
-      <!--</v-autocomplete>-->
-      <!--</v-col>-->
-      <!--<v-col cols="3" class="d-flex justify-end align-center">-->
-      <!--<v-btn dark color="primary">絞り込み</v-btn>-->
-      <!--</v-col>-->
-      <!--</v-row>-->
-      <!--</v-col>-->
       <list-users
         :body="userList"
         @open-edit-modal="openEditModal"
         @open-delete-modal="openDeleteModal"
       ></list-users>
-      <!--<v-col cols="12">-->
-      <!--<v-data-table :headers="headers" :items="userList" hide-default-footer class="elevation-1" >-->
-      <!--<template v-slot:item.edit>-->
-      <!--<v-icon @click="openEditModal">-->
-      <!--mdi-pencil-->
-      <!--</v-icon>-->
-      <!--</template>-->
-      <!--<template v-slot:item.delete>-->
-      <!--<v-icon @click="openDeleteModal">-->
-      <!--mdi-delete-->
-      <!--</v-icon>-->
-      <!--</template>-->
-      <!--</v-data-table>-->
-      <!--</v-col>-->
     </v-container>
-    <v-dialog v-model="editDialog" max-width="500px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">利用者詳細を編集</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="5">
-                <v-subheader>雪ん子No.</v-subheader>
-              </v-col>
-              <v-col cols="7">
-                <v-text-field label="ナンバー入力" value="1111"> </v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="5">
-                <v-subheader>氏名</v-subheader>
-              </v-col>
-              <v-col cols="7">
-                <v-text-field label="テキストを入力" value="田中太郎">
-                </v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="5">
-                <v-subheader>電話番号</v-subheader>
-              </v-col>
-              <v-col cols="7">
-                <v-text-field label="ナンバー入力" value="111-1111-1111">
-                </v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="5">
-                <v-subheader>地区</v-subheader>
-              </v-col>
-              <v-col cols="7">
-                <v-autocomplete :items="regions" label="地区を選択">
-                </v-autocomplete>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="5">
-                <v-subheader>センサID</v-subheader>
-              </v-col>
-              <v-col cols="7">
-                <v-text-field label="ナンバー入力" value="11111">
-                </v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="5">
-                <v-subheader>タンクの容量</v-subheader>
-              </v-col>
-              <v-col cols="7">
-                <v-autocomplete :items="capacity" label="タンクの容量を選択">
-                </v-autocomplete>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="5">
-                <v-subheader>定期配送</v-subheader>
-              </v-col>
-              <v-col cols="7">
-                <v-switch v-model="toggle"></v-switch>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col class="d-flex justify-end">
-                <v-btn class="mr-4" @click="closeEditModal">キャンセル</v-btn>
-                <v-btn color="primary" @click="closeEditModal">保存</v-btn>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+    <dialog-edit-user
+      ref="dialogEditUser"
+      :regions="regions"
+      :capacities="capacities"
+      @save-user-setting="saveUserSetting"
+    >
+    </dialog-edit-user>
     <v-dialog v-model="deleteDialog" max-width="500px">
       <v-card>
         <v-card-title class="headline">確認</v-card-title>
@@ -154,12 +49,14 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import HeadingLevel2 from '~/components/headings/HeadingLevel2'
 import FilterUserList from '~/components/filters/FilterUserList'
 import ListUsers from '~/components/lists/ListUsers'
+import DialogEditUser from '~/components/dialogs/DialogEditUser'
 
 @Component({
   components: {
     HeadingLevel2,
     FilterUserList,
     ListUsers,
+    DialogEditUser,
   },
 })
 export default class UserList extends Vue {
@@ -186,7 +83,7 @@ export default class UserList extends Vue {
     },
   ]
 
-  capacity = [
+  capacities = [
     {
       value: 1,
       text: '200L',
@@ -197,50 +94,60 @@ export default class UserList extends Vue {
     },
   ]
 
+  isSubscriptionMember = [
+    {
+      value: true,
+      text: '有',
+    },
+    {
+      value: false,
+      text: '無',
+    },
+  ]
+
   userList = [
     {
+      id: 1,
       yukinkoNumber: 11111,
       name: '田中太郎',
-      phoneNumber: '111-1111-1111',
-      regions: '秋田',
+      phoneNumber: 11111111111,
+      region: 1,
       sensorId: 11111,
-      capacity: 200,
+      capacity: 1,
       isSubscriptionMember: '有',
     },
     {
+      id: 2,
       yukinkoNumber: 22222,
       name: '田中二郎',
-      phoneNumber: '222-2222-2222',
-      regions: '大舘',
+      phoneNumber: 22222222222,
+      region: 2,
       sensorId: 22222,
-      capacity: 200,
+      capacity: 2,
       isSubscriptionMember: '無',
     },
     {
+      id: 3,
       yukinkoNumber: 33333,
       name: '田中三郎',
-      phoneNumber: '333-3333-3333',
-      regions: '能代',
+      phoneNumber: 33333333333,
+      region: 3,
       sensorId: 33333,
-      capacity: 200,
+      capacity: 1,
       isSubscriptionMember: '有',
     },
   ]
 
   filterUserList: object = {}
 
-  editDialog = false
+  deleteDialog: boolean = false
 
-  deleteDialog = false
+  userSelected: object = {}
 
-  toggle = false
-
-  openEditModal() {
-    this.editDialog = true
-  }
-
-  closeEditModal() {
-    this.editDialog = false
+  openEditModal(id: number) {
+    this.userSelected = this.userList.find(user => user.id === id)
+    this.$refs.dialogEditUser.setUser(this.userSelected)
+    this.$refs.dialogEditUser.openEditModal()
   }
 
   openDeleteModal() {
@@ -254,6 +161,10 @@ export default class UserList extends Vue {
   setFilteredUserList(filterUserList: object): void {
     console.log({ filterUserList })
     // userListを絞り込む処理を書く
+  }
+
+  saveUserSetting(userSetting: object): void {
+    console.log(userSetting)
   }
 }
 </script>
