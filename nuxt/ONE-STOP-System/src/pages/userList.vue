@@ -13,8 +13,8 @@
       ></filter-user-list>
       <list-users
         :body="userList"
-        @open-edit-modal="openEditModal"
-        @open-delete-modal="openDeleteModal"
+        @open-edit-dialog="openEditDialog"
+        @open-delete-dialog="openDeleteDialog"
       ></list-users>
     </v-container>
     <dialog-edit-user
@@ -24,23 +24,8 @@
       @save-user-setting="saveUserSetting"
     >
     </dialog-edit-user>
-    <v-dialog v-model="deleteDialog" max-width="500px">
-      <v-card>
-        <v-card-title class="headline">確認</v-card-title>
-        <v-card-text
-          >田中太郎さん（雪んこNo.：11111）のデータを削除しますか？</v-card-text
-        >
-        <v-card-text>（この操作は取り消すことができません）</v-card-text>
-        <v-card-actions>
-          <v-row>
-            <v-col class="d-flex justify-end">
-              <v-btn class="mr-4" @click="closeDeleteModal">キャンセル</v-btn>
-              <v-btn color="warning" @click="closeDeleteModal">削除</v-btn>
-            </v-col>
-          </v-row>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <dialog-delete-user ref="dialogDeleteUser" @delete-user="deleteUser">
+    </dialog-delete-user>
   </v-app>
 </template>
 
@@ -50,6 +35,7 @@ import HeadingLevel2 from '~/components/headings/HeadingLevel2'
 import FilterUserList from '~/components/filters/FilterUserList'
 import ListUsers from '~/components/lists/ListUsers'
 import DialogEditUser from '~/components/dialogs/DialogEditUser'
+import DialogDeleteUser from '~/components/dialogs/DialogDeleteUser'
 
 @Component({
   components: {
@@ -57,6 +43,7 @@ import DialogEditUser from '~/components/dialogs/DialogEditUser'
     FilterUserList,
     ListUsers,
     DialogEditUser,
+    DialogDeleteUser,
   },
 })
 export default class UserList extends Vue {
@@ -144,17 +131,19 @@ export default class UserList extends Vue {
 
   userSelected: object = {}
 
-  openEditModal(id: number) {
+  openEditDialog(id: number) {
     this.userSelected = this.userList.find(user => user.id === id)
     this.$refs.dialogEditUser.setUser(this.userSelected)
-    this.$refs.dialogEditUser.openEditModal()
+    this.$refs.dialogEditUser.openEditDialog()
   }
 
-  openDeleteModal() {
-    this.deleteDialog = true
+  openDeleteDialog(id: number) {
+    this.userSelected = this.userList.find(user => user.id === id)
+    this.$refs.dialogDeleteUser.setUser(this.userSelected)
+    this.$refs.dialogDeleteUser.openDeleteDialog()
   }
 
-  closeDeleteModal() {
+  closeDeleteDialog() {
     this.deleteDialog = false
   }
 
@@ -165,6 +154,10 @@ export default class UserList extends Vue {
 
   saveUserSetting(userSetting: object): void {
     console.log(userSetting)
+  }
+
+  deleteUser(userId: number): void {
+    console.log(userId)
   }
 }
 </script>

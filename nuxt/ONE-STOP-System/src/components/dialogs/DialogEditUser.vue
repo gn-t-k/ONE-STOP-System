@@ -99,7 +99,7 @@
           </v-row>
           <v-row>
             <v-col class="d-flex justify-end">
-              <v-btn class="mr-4" @click="closeEditModal">キャンセル</v-btn>
+              <v-btn class="mr-4" @click="closeEditDialog">キャンセル</v-btn>
               <v-btn color="primary" @click="saveUserSetting">保存</v-btn>
             </v-col>
           </v-row>
@@ -139,11 +139,11 @@ export default class DialogEditUser extends Vue {
     this.isSubscriptionMember = user.isSubscriptionMember
   }
 
-  openEditModal(): void {
+  openEditDialog(): void {
     this.editDialog = true
   }
 
-  closeEditModal(): void {
+  closeEditDialog(): void {
     this.editDialog = false
   }
 

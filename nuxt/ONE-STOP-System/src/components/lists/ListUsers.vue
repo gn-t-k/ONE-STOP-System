@@ -7,12 +7,12 @@
       class="elevation-1"
     >
       <template v-slot:item.edit="{ item }">
-        <v-icon @click="openEditModal(item.id)">
+        <v-icon @click="openEditDialog(item.id)">
           mdi-pencil
         </v-icon>
       </template>
-      <template v-slot:item.delete>
-        <v-icon @click="openDeleteModal">
+      <template v-slot:item.delete="{ item }">
+        <v-icon @click="openDeleteDialog(item.id)">
           mdi-delete
         </v-icon>
       </template>
@@ -40,12 +40,14 @@ export default class ListUsers extends Vue {
   @Prop({ default: [] })
   body!: array
 
-  @Emit('open-edit-modal')
-  openEditModal(id: number): number {
+  @Emit('open-edit-dialog')
+  openEditDialog(id: number): number {
     return id
   }
 
-  @Emit('open-delete-modal')
-  openDeleteModal() {}
+  @Emit('open-delete-dialog')
+  openDeleteDialog(id: number): number {
+    return id
+  }
 }
 </script>
