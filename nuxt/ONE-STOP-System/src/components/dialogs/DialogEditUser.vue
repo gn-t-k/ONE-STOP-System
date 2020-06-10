@@ -15,8 +15,7 @@
                 label="ナンバー入力"
                 :value="yukinkoNumber"
                 @input="setYukinkoNumber"
-              >
-              </v-text-field>
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -28,8 +27,7 @@
                 label="テキストを入力"
                 :value="name"
                 @input="setName"
-              >
-              </v-text-field>
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -41,8 +39,7 @@
                 label="ナンバー入力"
                 :value="phoneNumber"
                 @input="setPhoneNumber"
-              >
-              </v-text-field>
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -55,8 +52,7 @@
                 :value="region"
                 label="地区を選択"
                 @input="setRegion"
-              >
-              </v-autocomplete>
+              ></v-autocomplete>
             </v-col>
           </v-row>
           <v-row>
@@ -68,8 +64,7 @@
                 label="ナンバー入力"
                 :value="sensorId"
                 @input="setSensorId"
-              >
-              </v-text-field>
+              ></v-text-field>
             </v-col>
           </v-row>
           <v-row>
@@ -82,8 +77,7 @@
                 :value="capacity"
                 label="タンクの容量を選択"
                 @input="setCapacity"
-              >
-              </v-autocomplete>
+              ></v-autocomplete>
             </v-col>
           </v-row>
           <v-row>
