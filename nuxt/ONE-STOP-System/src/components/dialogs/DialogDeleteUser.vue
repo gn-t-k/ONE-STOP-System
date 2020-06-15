@@ -26,11 +26,11 @@ import { Component, Vue, Emit } from 'nuxt-property-decorator'
 @Component
 export default class DialogDeleteUser extends Vue {
   deleteDialog = false
-  userId: number = null
-  yukinkoNumber: number = null
+  userId: number | null = null
+  yukinkoNumber: number | null = null
   name: string = ''
 
-  setUser(user: object): void {
+  setUser(user: { id: number; yukinkoNumber: number; name: string }): void {
     this.userId = user.id
     this.yukinkoNumber = user.yukinkoNumber
     this.name = user.name
@@ -45,7 +45,7 @@ export default class DialogDeleteUser extends Vue {
   }
 
   @Emit('delete-user')
-  deleteUser(): number {
+  deleteUser(): number | null {
     this.closeDeleteDialog()
     return this.userId
   }

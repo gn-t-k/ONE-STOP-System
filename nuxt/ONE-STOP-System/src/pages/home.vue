@@ -46,11 +46,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import HeadingLevel2 from '~/components/headings/HeadingLevel2'
-import HeadingLevel3 from '~/components/headings/HeadingLevel3'
-import ListAlert from '~/components/lists/ListAlert'
-import ListRefuleOrders from '~/components/lists/ListRefuleOrders'
-import FilterRefuleOrders from '~/components/filters/FilterRefuleOrders'
+import HeadingLevel2 from '~/components/headings/HeadingLevel2.vue'
+import HeadingLevel3 from '~/components/headings/HeadingLevel3.vue'
+import ListAlert from '~/components/lists/ListAlert.vue'
+import ListRefuleOrders from '~/components/lists/ListRefuleOrders.vue'
+import FilterRefuleOrders from '~/components/filters/FilterRefuleOrders.vue'
 
 @Component({
   components: {
