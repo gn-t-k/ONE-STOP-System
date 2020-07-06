@@ -36,24 +36,24 @@ import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class FilterUserList extends Vue {
-  yukinkoNumber: number = null
+  yukinkoNumber: number | null = null
 
   name: string = ''
 
-  regionsValue: number = null
+  regionsValue: number | null = null
 
   @Prop({ default: [] })
-  regions!: array
+  regions!: [object]
 
-  setYukinkoNumber(yukinkoNumber: number): number {
+  setYukinkoNumber(yukinkoNumber: number): void {
     this.yukinkoNumber = yukinkoNumber
   }
 
-  setName(name: string): string {
+  setName(name: string): void {
     this.name = name
   }
 
-  setRegionsValue(regionsValue: number): number {
+  setRegionsValue(regionsValue: number): void {
     this.regionsValue = regionsValue
   }
 

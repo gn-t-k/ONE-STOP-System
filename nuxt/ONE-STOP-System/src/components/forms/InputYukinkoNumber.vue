@@ -18,7 +18,7 @@ import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class InputYukinkoNumber extends Vue {
-  yukinkoNumber: number = null
+  yukinkoNumber: number | null = null
 
   @Emit('setYukinkoNumber')
   setYukinkoNumber(yukinkoNumber: number): number {

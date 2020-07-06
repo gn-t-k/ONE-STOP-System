@@ -106,24 +106,45 @@
 <script lang="ts">
 import { Component, Vue, Emit, Prop } from 'nuxt-property-decorator'
 
+interface Region {
+  value: number | null
+  text: string
+}
+
+interface Capacity {
+  value: number | null
+  text: string
+}
+
+interface User {
+  id: number | null
+  yukinkoNumber: number | null
+  name: string
+  phoneNumber: number | null
+  region: number | null
+  sensorId: number | null
+  capacity: number | null
+  isSubscriptionMember: boolean
+}
+
 @Component
 export default class DialogEditUser extends Vue {
   @Prop({ default: () => [] })
-  regions!: array
+  regions!: [Region]
 
   @Prop({ default: () => [] })
-  capacities!: array
+  capacities!: [Capacity]
 
   editDialog: boolean = false
-  yukinkoNumber: number = null
+  yukinkoNumber: number | null = null
   name: string = ''
-  phoneNumber: string = ''
-  region: number = null
-  sensorId: number = null
-  capacity: number = null
+  phoneNumber: number | null = null
+  region: number | null = null
+  sensorId: number | null = null
+  capacity: number | null = null
   isSubscriptionMember: boolean = false
 
-  setUser(user: object): void {
+  setUser(user: User): void {
     this.yukinkoNumber = user.yukinkoNumber
     this.name = user.name
     this.phoneNumber = user.phoneNumber

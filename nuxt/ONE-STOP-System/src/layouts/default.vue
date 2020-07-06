@@ -69,7 +69,7 @@ export default class LayoutDefault extends Vue {
     },
   }
 
-  link(path) {
+  link(path: string): void {
     window.location.href = path
   }
 }

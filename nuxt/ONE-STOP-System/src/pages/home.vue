@@ -27,7 +27,6 @@
           heading-text="給油指示情報：最終更新2020年7月1日（16:00）"
         ></heading-level-3>
         <filter-refule-orders
-          :is-subscription-member="isSubscriptionMember"
           :regions="regions"
           :regions-value="regionsValue"
           @set-region="setRegion"
@@ -51,6 +50,11 @@ import HeadingLevel3 from '~/components/headings/HeadingLevel3.vue'
 import ListAlert from '~/components/lists/ListAlert.vue'
 import ListRefuleOrders from '~/components/lists/ListRefuleOrders.vue'
 import FilterRefuleOrders from '~/components/filters/FilterRefuleOrders.vue'
+
+interface Region {
+  value: number
+  text: string
+}
 
 @Component({
   components: {
@@ -127,7 +131,7 @@ export default class Home extends Vue {
 
   isSubscriptionMember = false
 
-  setRegion(region: object): void {
+  setRegion(region: Region): void {
     this.regionsValue = region
   }
 

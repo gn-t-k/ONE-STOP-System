@@ -18,7 +18,7 @@ import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class InputNumber extends Vue {
-  phoneNumber: number = null
+  phoneNumber: number | null = null
 
   @Emit('setPhoneNumber')
   setPhoneNumber(phoneNumber: number): number {

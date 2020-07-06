@@ -25,7 +25,7 @@ import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class ListUsers extends Vue {
-  headers: array = [
+  headers = [
     { text: '編集', value: 'edit' },
     { text: '雪んこNo.', value: 'yukinkoNumber' },
     { text: '氏名', value: 'name' },
@@ -38,7 +38,7 @@ export default class ListUsers extends Vue {
   ]
 
   @Prop({ default: [] })
-  body!: array
+  body!: [object]
 
   @Emit('open-edit-dialog')
   openEditDialog(id: number): number {

@@ -23,6 +23,27 @@
 <script lang="ts">
 import { Component, Vue, Emit } from 'nuxt-property-decorator'
 
+interface Region {
+  value: number | null
+  text: string
+}
+
+interface Capacity {
+  value: number | null
+  text: string
+}
+
+interface User {
+  id: number | null
+  yukinkoNumber: number | null
+  name: string
+  phoneNumber: number | null
+  region: number | null
+  sensorId: number | null
+  capacity: number | null
+  isSubscriptionMember: boolean
+}
+
 @Component
 export default class DialogDeleteUser extends Vue {
   deleteDialog = false
@@ -30,7 +51,7 @@ export default class DialogDeleteUser extends Vue {
   yukinkoNumber: number | null = null
   name: string = ''
 
-  setUser(user: { id: number; yukinkoNumber: number; name: string }): void {
+  setUser(user: User): void {
     this.userId = user.id
     this.yukinkoNumber = user.yukinkoNumber
     this.name = user.name

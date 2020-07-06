@@ -25,11 +25,8 @@ import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 export default class FilterRefuleOrders extends Vue {
   isSubscriptionMember: boolean = false
 
-  @Prop({ default: false })
-  isSubscriptionMember!: boolean
-
   @Prop({ default: [] })
-  regions!: array
+  regions!: [object]
 
   @Prop({ default: {} })
   regionsValue!: object

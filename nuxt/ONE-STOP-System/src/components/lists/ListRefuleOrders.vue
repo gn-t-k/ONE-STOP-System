@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class ListRefuleOrders extends Vue {
-  headers: array = [
+  headers = [
     { text: '日付', value: 'date' },
     { text: '雪んこNo.', value: 'yukinkoNumber' },
     { text: '氏名', value: 'name' },
@@ -25,6 +25,6 @@ export default class ListRefuleOrders extends Vue {
   ]
 
   @Prop({ default: [] })
-  body!: array
+  body!: [object]
 }
 </script>

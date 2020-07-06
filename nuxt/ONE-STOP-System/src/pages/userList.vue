@@ -30,12 +30,38 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import HeadingLevel2 from '~/components/headings/HeadingLevel2'
-import FilterUserList from '~/components/filters/FilterUserList'
-import ListUsers from '~/components/lists/ListUsers'
-import DialogEditUser from '~/components/dialogs/DialogEditUser'
-import DialogDeleteUser from '~/components/dialogs/DialogDeleteUser'
+import { Component, Vue, Ref } from 'nuxt-property-decorator'
+import HeadingLevel2 from '~/components/headings/HeadingLevel2.vue'
+import FilterUserList from '~/components/filters/FilterUserList.vue'
+import ListUsers from '~/components/lists/ListUsers.vue'
+import DialogEditUser from '~/components/dialogs/DialogEditUser.vue'
+import DialogDeleteUser from '~/components/dialogs/DialogDeleteUser.vue'
+
+interface Region {
+  value: number | null
+  text: string
+}
+
+interface Capacity {
+  value: number | null
+  text: string
+}
+
+interface IsSubscriptionMember {
+  value: number | null
+  text: string
+}
+
+interface User {
+  id: number | null
+  yukinkoNumber: number | null
+  name: string
+  phoneNumber: number | null
+  region: number | null
+  sensorId: number | null
+  capacity: number | null
+  isSubscriptionMember: boolean
+}
 
 @Component({
   components: {
@@ -47,6 +73,9 @@ import DialogDeleteUser from '~/components/dialogs/DialogDeleteUser'
   },
 })
 export default class UserList extends Vue {
+  @Ref() dialogEditUser!: DialogEditUser
+  @Ref() dialogDeleteUser!: DialogDeleteUser
+
   breadCrumbs = [
     {
       text: '利用者一覧',
@@ -92,7 +121,7 @@ export default class UserList extends Vue {
     },
   ]
 
-  userList = [
+  userList: User[] = [
     {
       id: 1,
       yukinkoNumber: 11111,
@@ -101,7 +130,7 @@ export default class UserList extends Vue {
       region: 1,
       sensorId: 11111,
       capacity: 1,
-      isSubscriptionMember: '有',
+      isSubscriptionMember: true,
     },
     {
       id: 2,
@@ -111,7 +140,7 @@ export default class UserList extends Vue {
       region: 2,
       sensorId: 22222,
       capacity: 2,
-      isSubscriptionMember: '無',
+      isSubscriptionMember: false,
     },
     {
       id: 3,
@@ -121,7 +150,7 @@ export default class UserList extends Vue {
       region: 3,
       sensorId: 33333,
       capacity: 1,
-      isSubscriptionMember: '有',
+      isSubscriptionMember: true,
     },
   ]
 
@@ -129,18 +158,31 @@ export default class UserList extends Vue {
 
   deleteDialog: boolean = false
 
-  userSelected: object = {}
-
-  openEditDialog(id: number) {
-    this.userSelected = this.userList.find(user => user.id === id)
-    this.$refs.dialogEditUser.setUser(this.userSelected)
-    this.$refs.dialogEditUser.openEditDialog()
+  userSelected: User | undefined = {
+    id: null,
+    yukinkoNumber: null,
+    name: '',
+    phoneNumber: null,
+    region: null,
+    sensorId: null,
+    capacity: null,
+    isSubscriptionMember: true,
   }
 
-  openDeleteDialog(id: number) {
+  openEditDialog(id: number): void {
     this.userSelected = this.userList.find(user => user.id === id)
-    this.$refs.dialogDeleteUser.setUser(this.userSelected)
-    this.$refs.dialogDeleteUser.openDeleteDialog()
+    if (this.userSelected !== undefined) {
+      this.dialogEditUser.setUser(this.userSelected)
+      this.dialogEditUser.openEditDialog()
+    }
+  }
+
+  openDeleteDialog(id: number): void {
+    this.userSelected = this.userList.find(user => user.id === id)
+    if (this.userSelected !== undefined) {
+      this.dialogDeleteUser.setUser(this.userSelected)
+      this.dialogDeleteUser.openDeleteDialog()
+    }
   }
 
   closeDeleteDialog() {

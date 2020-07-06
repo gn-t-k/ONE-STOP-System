@@ -19,10 +19,10 @@ import { Component, Prop, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class InputRegion extends Vue {
-  regionsValue: number = null
+  regionsValue: number | null = null
 
   @Prop({ default: [] })
-  regions!: array
+  regions!: [object]
 
   @Emit('setRegionsValue')
   setRegionsValue(regionsValue: number): number {

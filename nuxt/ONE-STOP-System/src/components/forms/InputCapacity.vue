@@ -20,7 +20,7 @@ import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class InputCapacity extends Vue {
-  capacityValue: number = null
+  capacityValue: number | null = null
 
   @Emit('setCapacityValue')
   setCapacityValue(capacityValue: number): number {

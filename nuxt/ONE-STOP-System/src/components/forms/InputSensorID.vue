@@ -18,7 +18,7 @@ import { Component, Emit, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class InputSensorID extends Vue {
-  sensorID: number = null
+  sensorID: number | null = null
 
   @Emit('setSensorID')
   setSensorID(sensorID: number): number {
