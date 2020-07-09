@@ -103,7 +103,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import HeadingLevel2 from '~/components/headings/HeadingLevel2'
+import HeadingLevel2 from '~/components/headings/HeadingLevel2.vue'
 
 @Component({
   components: {
@@ -111,12 +111,12 @@ import HeadingLevel2 from '~/components/headings/HeadingLevel2'
   },
 })
 export default class UserRegisteration extends Vue {
-  yukinkoNumber: number = null
+  yukinkoNumber: number | null = null
   name: string = ''
-  phoneNumber: string = ''
-  region: number = null
-  sensorId: number = null
-  capacity: number = null
+  phoneNumber: number | null = null
+  region: number | null = null
+  sensorId: number | null = null
+  capacity: number | null = null
   isSubscriptionMember: boolean = false
 
   breadCrumbs = [
